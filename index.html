@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>通维咨询 - OCE企业级AI协作平台</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -13,19 +13,24 @@
             --accent: #f59e0b;
             --dark: #0f172a;
             --light: #f8fafc;
+            --vw: 1vw;
+            --vh: 1vh;
         }
-        body { font-family: 'Noto Sans SC', -apple-system, sans-serif; color: #334155; line-height: 1.7; overflow-x: hidden; }
+        html { font-size: 16px; }
+        @media (max-width: 1920px) { html { font-size: 16px; } }
+        @media (max-width: 1440px) { html { font-size: 15px; } }
+        @media (max-width: 1024px) { html { font-size: 14px; } }
+        @media (max-width: 768px) { html { font-size: 13px; } }
+        @media (max-width: 480px) { html { font-size: 12px; } }
+        body { font-family: 'Noto Sans SC', -apple-system, sans-serif; color: #334155; line-height: 1.7; overflow-x: hidden; width: 100vw; min-height: 100vh; }
         
         /* 导航 */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 0; }
-        nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo img { height: 80px; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.3); max-width: 100%; }
-        @media (max-width: 768px) {
-            .logo img { height: 50px; }
-        }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 0.8rem 0; }
+        nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; flex-wrap: wrap; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 0.5rem; }
+        .logo img { height: 3rem; border-radius: 0.5rem; box-shadow: 0 0 20px rgba(255,255,255,0.3); max-width: 30vw; }
         .logo span { color: var(--accent); }
-        nav a { color: #94a3b8; text-decoration: none; margin-left: 30px; transition: color 0.3s; }
+        nav a { color: #94a3b8; text-decoration: none; margin-left: 1.5rem; transition: color 0.3s; font-size: 0.9rem; }
         nav a:hover { color: white; }
         
         /* 英雄区 */
@@ -124,10 +129,46 @@
             .contact-grid { grid-template-columns: 1fr; }
             nav { padding: 10px 0; }
             nav .container { flex-wrap: wrap; justify-content: center; }
-            nav a { margin: 0 10px; font-size: 0.85rem; }
+            nav a { margin: 5px 8px; font-size: 0.8rem; }
             section { padding: 60px 15px; }
             .price-card.featured { transform: none; }
             .btn { padding: 12px 25px; font-size: 0.9rem; }
+        }
+        
+        /* 超级响应式 - 任何尺寸 */
+        @media (min-width: 2560px) {
+            .container, nav .container { max-width: 1600px; }
+            .hero-content { padding: 0 10%; }
+            .hero h1 { font-size: 5rem; }
+        }
+        
+        /* 横屏适配 */
+        @media (orientation: landscape) and (max-height: 600px) {
+            .hero { min-height: auto; padding: 80px 20px; }
+            .hero-content { padding: 20px; }
+        }
+        
+        /* 超宽屏 */
+        @media (min-aspect-ratio: 21/9) {
+            .hero-content { max-width: 70%; margin: 0 auto; }
+        }
+        
+        /* 平板横屏 */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .feature-grid { grid-template-columns: repeat(3, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        /* 小屏幕优化 */
+        @media (max-width: 375px) {
+            .btn { padding: 10px 20px; font-size: 0.85rem; }
+            .feature-card, .price-card, .contact-card { padding: 20px; }
+        }
+        
+        /* 大屏幕优化 */
+        @media (min-width: 2000px) {
+            .container, nav .container { max-width: 1400px; }
+            body { font-size: 18px; }
         }
     </style>
 </head>
@@ -137,6 +178,7 @@
             <div class="logo"><span style="font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OCE</span></div>
             <a href="#about">关于我们</a>
             <a href="#features">产品特性</a>
+            <a href="#aware">自主感知</a>
             <a href="#pricing">定价方案</a>
             <a href="#contact">联系我们</a>
         </div>
@@ -148,7 +190,8 @@
             <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 10px; background: linear-gradient(90deg, #fff, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">企业级AI协作平台</h1>
             <p style="font-size: 1.2rem; opacity: 0.7; margin-bottom: 40px;">OpenClaw Enterprise</p>
             <p>AI Agent驱动的新一代企业数字化解决方案</p>
-            <a href="http://81.70.158.130:7891/" class="btn">查看DEMO</a>
+            <a href="http://81.70.158.130:7891/" class="btn">OCE Dashboard</a>
+            <a href="http://81.70.158.130:7892/" class="btn btn-outline">Aware System</a>
             <a href="#contact" class="btn btn-outline">联系我们</a>
         </div>
     </section>
@@ -251,6 +294,53 @@
         </div>
     </section>
 
+    <!-- 自主感知系统 -->
+    <section class="features" id="aware" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">🧠 Aware System</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 40px; color: #94a3b8;">AI Agent 自主感知系统，让AI员工主动思考、自主决策</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🎯</div>
+                    <h3>Focus Items</h3>
+                    <p style="color: #94a3b8;">AI维护工作清单，自主追踪待处理/进行中/已完成事项</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">⏰</div>
+                    <h3>Triggers</h3>
+                    <p style="color: #94a3b8;">6种触发器类型：Cron/Interval/Poll/Webhook/On_Message</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">💭</div>
+                    <h3>Reflections</h3>
+                    <p style="color: #94a3b8;">记录AI自主推理过程，展示思考轨迹</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">⚠️</div>
+                    <h3>Approvals</h3>
+                    <p style="color: #94a3b8;">危险操作需人工审批，确保安全可控</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📊</div>
+                    <h3>System Monitor</h3>
+                    <p style="color: #94a3b8;">实时监控OCE系统运行状态，AI/任务态势一目了然</p>
+                </div>
+                <div class="feature-card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🔄</div>
+                    <h3>Auto Execution</h3>
+                    <p style="color: #94a3b8;">定时自动执行任务，汇报进展，无需人工干预</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="http://81.70.158.130:7892/" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #00d4ff, #7b2cff); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
+                    体验 Aware System →
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">定价方案</h2>
@@ -307,6 +397,63 @@
         </div>
     </section>
 
+    <!-- DEMO版本说明 -->
+    <section style="background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); color: white; padding: 80px 20px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 40px; position: relative; padding-bottom: 20px;">
+                📋 DEMO版本说明
+                <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:2px;"></div>
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+                <!-- 当前版本 -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.15);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #f59e0b;">✨ 当前版本 v0.0.1</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 18个部门组织架构</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 173个AI Agent注册</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 飞书/微信指令入口</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ AI员工自主协作</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 任务自动分配调度</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 可视化Dashboard</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 状态实时联动</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ 🧠 Focus Items工作记忆</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">✓ ⏰ 6种触发器类型</li>
+                        <li style="padding: 8px 0;">✓ 💭 AI自主推理记录</li>
+                    </ul>
+                </div>
+                
+                <!-- 待优化 -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.15);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #94a3b8;">🔧 待优化功能</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <span style="color: #f59e0b; margin-right: 10px;">◐</span>自动更新的组织架构
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <span style="color: #f59e0b; margin-right: 10px;">◐</span>灵活的流转机制
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <span style="color: #f59e0b; margin-right: 10px;">◐</span>全端自适应布局
+                        </li>
+                        <li style="padding: 10px 0;">
+                            <span style="color: #f59e0b; margin-right: 10px;">◐</span>会议讨论功能
+                        </li>
+                    </ul>
+                    <p style="margin-top: 25px; padding: 15px; background: rgba(37, 99, 235, 0.15); border-radius: 10px; font-size: 0.95rem; color: #94a3b8;">
+                        💡 持续迭代中，敬请期待...
+                    </p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="http://81.70.158.130:7891/" style="display: inline-block; padding: 12px 35px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">
+                    体验DEMO →
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">联系我们</h2>
@@ -318,8 +465,13 @@
                 </div>
                 <div class="contact-card">
                     <span class="contact-icon">🌐</span>
-                    <h3>在线DEMO</h3>
+                    <h3>OCE Dashboard</h3>
                     <a href="http://81.70.158.130:7891/" target="_blank">立即体验</a>
+                </div>
+                <div class="contact-card">
+                    <span class="contact-icon">🧠</span>
+                    <h3>Aware System</h3>
+                    <a href="http://81.70.158.130:7892/" target="_blank">立即体验</a>
                 </div>
                 <div class="contact-card">
                     <span class="contact-icon">🏢</span>
